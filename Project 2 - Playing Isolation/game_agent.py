@@ -92,7 +92,8 @@ def custom_score_3(game, player):
     if own_location == None:
         return 0.
 
-    return float(-abs(sum(opp_location) - sum(own_location)))
+    score = float(-abs(sum(opp_location) - sum(own_location)))
+    return score
 
 
 def custom_score_2(game, player):
@@ -140,9 +141,9 @@ def custom_score_2(game, player):
                   or move[1] == (game.width - 1)]
 
     # Penalize/reward move count if some moves are against the wall
-    return float(len(own_moves) - len(own_v_wall)
-                 - len(opp_moves) + len(opp_v_wall))
-
+    score = float(len(own_moves) - len(own_v_wall)
+                - len(opp_moves) + len(opp_v_wall))
+    return score
 
 def custom_score(game, player):
     """Outputs a score equal to the difference in the number of moves
@@ -191,9 +192,9 @@ def custom_score(game, player):
     opp_in_corner = [move for move in opp_moves if move in corners]
 
     # Penalize/reward move count if some moves are in the corner
-    return float(len(own_moves) - (game_state_factor * len(own_in_corner))
-                 - len(opp_moves) + (game_state_factor * len(opp_in_corner)))
-
+    score = float(len(own_moves) - (game_state_factor * len(own_in_corner))
+                - len(opp_moves) + (game_state_factor * len(opp_in_corner)))
+    return score
 
 class IsolationPlayer:
     """Base class for minimax and alphabeta agents -- this class is never
